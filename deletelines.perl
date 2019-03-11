@@ -5,7 +5,7 @@ use warnings;
 our $^I = '';
 
 my $start_match = "Format for the datetime that a message being replied to was received";
-my @clock_formats = ("%-l:%M %p", "%l:%M %p", "%H:%M %p", "%H:%M", "%H.%M", "%-l:%M", "%-k:%M");
+my @clock_formats = ("%-Hu%M", "%-k.%M-kor", "%-l∶%M %p", "%-l:%M %p", "%l:%M %p", "%H:%M %p", "%-H:%M", "%H∶%M", "%H:%M", "%H.%M", "%-l:%M", "%-k:%M");
 
 my $line_processed = 1;
 
