@@ -14,9 +14,10 @@ my $line_processed = 1;
 
 foreach my $file(@file_list) {
     # open my $file, $filename or die "couldn't open $file: $!";
-    my @ARGV = ($file);
+    local @ARGV = ($file);
     while (<ARGV>) {
-        if ($line_processed == 1 and m/$start_match/) {
+        # \Q means "exact substring match"
+        if ($line_processed == 1 and m/\Q$start_match/) {
             # ignore 1st line
             $line_processed = 2;
         } elsif ($line_processed == 2) {
@@ -33,13 +34,11 @@ foreach my $file(@file_list) {
         } elsif ($line_processed == 5) {
             # replace clock_format with %s
             foreach my $clock(@clock_formats) {
-                if (m/\Q$clock/) {
-                    s/\Q$clock/%s/;
-                    last;
-                }
+                last if s/\Q$clock/%s/;
             }
+            # double "%"s except in "%s"
+            s/%([^s])/%%$1/g;
             print;
-            # on 5-th: double %
             $line_processed = 1;
         } else {
             print;
