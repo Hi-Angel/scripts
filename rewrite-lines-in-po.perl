@@ -1,3 +1,5 @@
+# Used once to fix localization in Geary after having changed a format string.
+# run as "perl ./scriptname.perl *.po"
 use strict;
 use warnings;
 
