@@ -20,11 +20,8 @@ def pretty_hour(h):
     return str(h) + "⁰⁰"
 
 def parse():
-    ret = []
-    for descr in fileinput.input():
-        if not descr.isspace():
-            ret.append(calc_one_drug(descr))
-    return ret
+    return [calc_one_drug(descr) for descr in fileinput.input()
+                                 if not descr.isspace()]
 
 drugs = parse()
 drugs.sort(key = lambda v: len(v[1]))
