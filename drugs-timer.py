@@ -2,7 +2,7 @@ import fileinput
 import sys
 from functools import reduce
 
-average_daytime = 12
+average_daytime = 15
 base_time = int(input())
 assert(base_time >= 0 and base_time <= 24)
 def calc_one_drug(description_line):
@@ -17,9 +17,21 @@ def calc_one_drug(description_line):
         return (drug_name, [(base_time + h * optimal_timespan) % 24 for h in range(0, n_times_a_day)])
 
 def pretty_hour(h):
-    return str(h) + ":00"
+    return str(h) + "⁰⁰"
 
-for descr in fileinput.input():
-    if not descr.isspace():
-        (drug_name, spans) = calc_one_drug(descr)
-        print(drug_name + "\t" + pretty_hour(spans[0]) + reduce(lambda acc,h: acc + ", " + pretty_hour(h), spans[1:], ""))
+def parse():
+    ret = []
+    for descr in fileinput.input():
+        if not descr.isspace():
+            ret.append(calc_one_drug(descr))
+    return ret
+
+drugs = parse()
+drugs.sort(key = lambda v: len(v[1]))
+
+for (drug_name, spans) in drugs:
+    # align to 3 tabs = 24 spaces
+    tabs = '\t\t\t' if len(drug_name) <= 7 else \
+        '\t\t' if len(drug_name) <= 15 else \
+        '\t'
+    print(drug_name + tabs + pretty_hour(spans[0]) + reduce(lambda acc,h: acc + ", " + pretty_hour(h), spans[1:], ""))
