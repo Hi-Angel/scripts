@@ -27,11 +27,8 @@ def pretty_hour(h):
     return str(h) + "⁰⁰"
 
 def parse():
-    accum = {}
-    for descr in fileinput.input():
-        if not descr.isspace():
-            calc_one_drug(descr, accum)
-    return accum
+    return reduce(lambda acc,descr: acc if descr.isspace() else calc_one_drug(descr, acc),
+                  fileinput.input(), {})
 
 drugs = parse()
 for (time, drug_names) in sorted(drugs.items(),
