@@ -34,5 +34,6 @@ def parse():
     return accum
 
 drugs = parse()
-for (time, drug_names) in sorted(drugs.items()):
+for (time, drug_names) in sorted(drugs.items(),
+                                 key = lambda pair: pair[0] if pair[0] >= base_time else pair[0] + 24):
     print(pretty_hour(time) + "\t" + drug_names)
