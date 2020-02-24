@@ -13,8 +13,8 @@ while (1) {
             if ($threshold <= $used) {
                 if (not $user_alerted) {
                     `notify-send "Warning" "Your memory is low!"`;
+                    $user_alerted = 1;
                 }
-                $user_alerted = 1;
             } else {
                 $user_alerted = 0;
             }
