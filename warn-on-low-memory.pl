@@ -8,18 +8,22 @@ while (1) {
     $free_output=`free`;
     foreach (split(/\n/, $free_output)) {
         if (/^Swap/) {
-            $used=$F[2];
             $total=$F[1];
-            $threshold=$total*0.75;
-            if ($threshold <= $used) {
-                if (not $user_alerted) {
-                    if (system('notify-send "Warning" "Your memory is low!"')) {
-                        die 'Failed to call notify-send!'
-                    }
-                    $user_alerted = 1;
-                }
+            if ($total == 0) {
+                print "Swap is missing, nothing to do\n"
             } else {
-                $user_alerted = 0;
+                $used=$F[2];
+                $threshold=$total*0.75;
+                if ($threshold <= $used) {
+                    if (not $user_alerted) {
+                        if (system('notify-send "Warning" "Your memory is low!"')) {
+                            die 'Failed to call notify-send!'
+                        }
+                        $user_alerted = 1;
+                    }
+                } else {
+                    $user_alerted = 0;
+                }
             }
         }
     }
