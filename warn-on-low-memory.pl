@@ -12,7 +12,9 @@ while (1) {
             $threshold=$total*0.75;
             if ($threshold <= $used) {
                 if (not $user_alerted) {
-                    `notify-send "Warning" "Your memory is low!"`;
+                    if (system('notify-send "Warning" "Your memory is low!"')) {
+                        die 'Failed to call notify-send!'
+                    }
                     $user_alerted = 1;
                 }
             } else {
