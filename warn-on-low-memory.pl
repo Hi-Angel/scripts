@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 # this shows a pop up message if SWAP file has less than 25% left. For those
 # wondering, whether system is usable at that moment: well, with ZSWAP enabled on 5.3
 # and later kernel (at least with an SSD disk) there's no lags until the moment SWAP
