@@ -10,12 +10,12 @@ while (1) {
     my $free_output=`free`;
     foreach (split /^/, $free_output) {
         if (/^Swap/) {
-            my $total=$F[1];
+            my $total = (split /\s+/)[1];
             if ($total == 0) {
                 print "Swap is missing, nothing to do\n"
             } else {
-                my $used=$F[2];
-                my $threshold=$total*0.75;
+                my $used = (split /\s+/)[2];
+                my $threshold = $total*0.75;
                 if ($threshold <= $used) {
                     if (not $user_alerted) {
                         if (system('notify-send "Warning" "Your memory is low!"')) {
