@@ -4,6 +4,7 @@
 # 5.3 and later kernel (at least with an SSD disk) there's no lags until SWAP
 # gets 100% full.
 use warnings;
+use strict;
 
 my $user_alerted=0;
 while (1) {
