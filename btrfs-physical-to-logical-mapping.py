@@ -31,11 +31,11 @@ def main():
     with btrfs.FileSystem(path) as fs:
         dev_extent = get_dev_extent(fs, devid, paddr, path)
 
-    print("devid {} paddr {} is part of {}".format(devid, paddr, dev_extent))
-    print("DISCLAIMER: next things won't work for RAID56!!")
+    print(f"INF: devid {devid} paddr {paddr} is part of {dev_extent}")
+    print("NOTE: this won't work for RAID56!")
     way_into = paddr - dev_extent.paddr
-    print("paddr is {} bytes into that dev extent".format(way_into))
-    print("so, logical/virtual address would be {}".format(dev_extent.chunk_offset + way_into))
+    print(f"paddr is {way_into} bytes into that dev extent")
+    print(f"logical/virtual address is {dev_extent.chunk_offset + way_into}")
 
 
 if __name__ == '__main__':
