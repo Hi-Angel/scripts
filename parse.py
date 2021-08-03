@@ -7,12 +7,13 @@ ParserElement.setDefaultWhitespaceChars('') # must be before any pyparsing usage
 
 Ident = Word(alphanums)
 # Quote = Or(['"', "'"])
-empty_init = Regex('\n\s+def __init__\(self\):') + '\n' \
-    + Regex('\s+pass\s*\n')
+regex_to_find \
+    = locatedExpr(Regex(r'if\s*\(.+?= foo\(\w+\)\).*\n\s*{\n'))('pattern1') \
+    + locatedExpr(Regex('\s*sts\s*=\s*ERR_SOME.*'))('line_to_del')
 
-# return ARG infix and the string value
 def parse(text):
-    r = locatedExpr(empty_init)('empty_init')
+    r = locatedExpr(regex_to_find)('regex_to_find')
+    r.parseWithTabs() # a work around for tabs conversion, see https://github.com/pyparsing/pyparsing/issues/293
     return [match for match in r.scanString(text)]
 
 def read_text(filename) -> str:
@@ -31,9 +32,11 @@ if __name__ == "__main__":
         text = read_text(filename)
         matches = parse(text)
         print(f'Got matches: {matches}')
+        if not matches:
+            continue
+        print('Replacing…\n')
         for m in reversed(matches): # overwrite it starting from the bottom
-            print()
-            start = m[0]['empty_init']['locn_start']
-            past_end = m[0]['empty_init']['locn_end']
-            text = text[:start+1] + text[past_end:]
+            start = m[0]['regex_to_find']['line_to_del']['locn_start']-1  # -1 to get index
+            past_end = m[0]['regex_to_find']['line_to_del']['locn_end']-1 # -1 to get index
+            text = text[:start] + text[past_end+1:]
         overwrite_file(filename, text)
