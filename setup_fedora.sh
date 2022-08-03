@@ -73,6 +73,7 @@ sudo sh -c "echo LC_TIME=ru_RU.UTF-8 >> /etc/environment"
 ### Gnome setup
 # I don't use Gnome, but let's make it a bit more usable for other people
 # Might require Gnome restart, since editing via command-line is badly integrated in Gnome.
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.Settings last-panel power
 gsettings set org.gnome.desktop.input-sources xkb-options "['compose:menu']"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
