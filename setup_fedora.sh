@@ -43,7 +43,8 @@ sudo cp /etc/grub2{,-efi}.cfg
 # sqlite: required for zsh completion
 # gnome-extensions-app: why do they even install Gnome without the app?
 # moreutils provides ifne
-sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils libva-utils libva-intel-driver
 ### END installation
 
 ### zsh section
