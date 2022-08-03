@@ -93,7 +93,7 @@ fi
 ### END podman setup
 
 ### sway
-sudo dnf install sway python-i3ipc rofi i3blocks
+sudo dnf install sway python-i3ipc rofi i3blocks network-manager-applet
 cp -r ~/Projects/dotfiles/.config/sway ~/.config
 curl -LSso ~/.config/sway/inactive-windows-transparency.py https://raw.githubusercontent.com/swaywm/sway/master/contrib/inactive-windows-transparency.py
 mkdir -p ~/Pictures
