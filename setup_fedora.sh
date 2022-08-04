@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # script for setting up a clean newly installed (no modifications) Fedora.
+# Comment out unnecessary sections/installations before use.
 
 set -exu
 
@@ -33,6 +34,7 @@ fi
 sudo sh -c 'echo add_drivers+=\" lz4hc lz4hc_compress \" > /etc/dracut.conf.d/lz4hc.conf'
 sudo dracut --regenerate-all --force
 sudo sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& zswap.enabled=1 zswap.max_pool_percent=25 zswap.compressor=lz4hc/' /etc/default/grub
+sudo sh -c 'echo GRUB_SAVEDEFAULT=true >> /etc/default/grub' # load last chosen kernel
 sudo grub2-mkconfig -o /etc/grub2.cfg
 sudo cp /etc/grub2{,-efi}.cfg
 #### END of ZSWAP setup
@@ -43,8 +45,9 @@ sudo cp /etc/grub2{,-efi}.cfg
 # sqlite: required for zsh completion
 # gnome-extensions-app: why do they even install Gnome without the app?
 # moreutils provides ifne
+# aspell-{ru,en} hunspell-{ru,en}: for good measure both lang-checking packages
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils libva-utils libva-intel-driver
+sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en}
 ### END installation
 
 ### zsh section
@@ -69,6 +72,7 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 cp -r ~/Projects/dotfiles/.config ~/
 cp ~/Projects/dotfiles/.XCompose ~/
+sudo cp ~/Projects/dotfiles/etc/sysctl.d/99-sysctl.conf /etc/sysctl.d/
 sudo sh -c "echo LC_TIME=ru_RU.UTF-8 >> /etc/environment"
 
 ### Gnome setup
@@ -102,6 +106,19 @@ mkdir -p ~/Pictures
 curl -LSso ~/Pictures/ANIME-PICTURES.NET_-_130164-1600x989-original-sakimichan-long+hair-wide+image-grey+hair-horn+%28horns%29.jpg https://ip1.anime-pictures.net/direct-images/dae/dae6076faa97645534586ab1d22603c3.jpg?if=ANIME-PICTURES.NET_-_130164-1600x989-original-sakimichan-long+hair-light+erotic-wide+image-horn+%28horns%29.jpg
 ### END sway
 
+### Plasma + i3
+systemctl mask plasma-kwin_x11.target --user
+systemctl enable plasma-i3 --user
+sudo dnf install -y i3 feh xinput picom
+sudo dnf groupinstall -y "KDE Plasma Workspaces"
+### END KDE
+
+### Emacs
+sudo dnf install emacs
+cp -r ~/Projects/dotfiles/.emacs* ~/
+# didn't care to automate packages installation. See comment at the top of `.emacs`.
+### END Emacs
+
 # some stuff is hard to install from cmd line or doesn't make much sense in general configuration
 # * Tray is a must have on Gnome: https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
-# * skype, telegram, sway
+# * skype, telegram, vaapi for Chrome
