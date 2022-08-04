@@ -8,7 +8,7 @@ set -exu
 cd ~/ # we assume to be working in /home/foo/
 
 function fail() {
-    echo ${@}
+    echo "${@}"
     exit 1
 }
 
