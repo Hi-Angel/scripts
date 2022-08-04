@@ -12,9 +12,9 @@ function fail() {
     exit 1
 }
 
-if $(mount | grep btrfs > /dev/null); then
+if mount | grep btrfs > /dev/null; then
     if [[ ! $(mount | grep btrfs) == *zstd:3* ]]; then
-        fail "enable zstd:3 (default compression version) on btrfs partition"
+        fail "enable zstd:3 (default compression version) on btrfs partition, space_cache=v2,autodefrag"
     fi
 fi
 
