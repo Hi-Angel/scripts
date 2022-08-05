@@ -47,7 +47,7 @@ sudo cp /etc/grub2{,-efi}.cfg
 # moreutils provides ifne
 # aspell-{ru,en} hunspell-{ru,en}: for good measure both lang-checking packages
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en}
+sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en} lshw ack
 ### END installation
 
 ### zsh section
