@@ -109,7 +109,7 @@ curl -LSso ~/Pictures/ANIME-PICTURES.NET_-_130164-1600x989-original-sakimichan-l
 ### Plasma + i3
 systemctl mask plasma-kwin_x11.target --user
 systemctl enable plasma-i3 --user
-sudo dnf install -y i3 feh xinput picom
+sudo dnf install -y i3 feh xinput picom xset
 sudo dnf groupinstall -y "KDE Plasma Workspaces"
 ### END KDE
 
