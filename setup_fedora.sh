@@ -47,7 +47,7 @@ sudo cp /etc/grub2{,-efi}.cfg
 # moreutils provides ifne
 # aspell-{ru,en} hunspell-{ru,en}: for good measure both lang-checking packages
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole qutebrowser moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en} lshw ack
+sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en} lshw ack vlc
 ### END installation
 
 ### zsh section
@@ -85,11 +85,11 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.session idle-delay uint32 600
 ### END Gnome setup
 
-### install liquorix-kernel 
+### install liquorix-kernel
 # it has MLRU patchset included, which is a must have till it landed upstream
 sudo dnf copr enable rmnscnce/kernel-lqx -y
 sudo dnf install kernel-lqx
-### END install liquorix-kernel 
+### END install liquorix-kernel
 
 ### podman setup
 if [ ! -e /etc/subgid ]; then
@@ -118,6 +118,15 @@ sudo dnf install emacs
 cp -r ~/Projects/dotfiles/.emacs* ~/
 # didn't care to automate packages installation. See comment at the top of `.emacs`.
 ### END Emacs
+
+### Qutebrowser
+sudo dnf install -y qutebrowser
+# for some reason hunspell dicts are not detected by Qutebrowser, so we have to use
+# the script to install langs somewhere
+wget https://raw.githubusercontent.com/qutebrowser/qutebrowser/master/scripts/dictcli.py
+chmod +x dictcli.py
+./dictcli.py install en-US ru-RU
+### END Qutebrowser
 
 # some stuff is hard to install from cmd line or doesn't make much sense in general configuration
 # * Tray is a must have on Gnome: https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
