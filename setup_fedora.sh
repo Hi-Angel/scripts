@@ -74,6 +74,7 @@ cp -r ~/Projects/dotfiles/.config ~/
 cp ~/Projects/dotfiles/.XCompose ~/
 sudo cp ~/Projects/dotfiles/etc/sysctl.d/99-sysctl.conf /etc/sysctl.d/
 sudo sh -c "echo LC_TIME=ru_RU.UTF-8 >> /etc/environment"
+sudo sh -c 'echo user_allow_other >> /etc/fuse.conf' # allow user mounts
 
 ### Gnome setup
 # I don't use Gnome, but let's make it a bit more usable for other people
