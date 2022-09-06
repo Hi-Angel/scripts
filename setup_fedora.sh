@@ -24,6 +24,7 @@ fi
 
 sudo systemctl disable --now systemd-oomd{,.socket}
 sudo systemctl mask systemd-oomd #there's a bug that systemd-oomd will restart even after being disabled
+sudo dnf -y remove systemd-oomd-defaults
 
 ### ZSWAP setup
 # I want SWAP + ZSWAP, no ZRAM.
