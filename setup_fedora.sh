@@ -48,12 +48,13 @@ sudo cp /etc/grub2{,-efi}.cfg
 # moreutils provides ifne
 # aspell-{ru,en} hunspell-{ru,en}: for good measure both lang-checking packages
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en} lshw ack vlc kernel-tools
+sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en} lshw ack vlc
 ### END installation
 
-# default to ondemand
-sudo sed -i 's/performance/ondemand/' /etc/sysconfig/cpupower
-sudo systemctl enable --now cpupower
+# # default to ondemand
+# sudo dnf install kernel-tools
+# sudo sed -i 's/performance/ondemand/' /etc/sysconfig/cpupower
+# sudo systemctl enable --now cpupower
 
 ### zsh section
 wget https://raw.githubusercontent.com/Hi-Angel/dotfiles/master/.zshrc
