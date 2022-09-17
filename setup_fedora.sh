@@ -100,7 +100,7 @@ sudo dnf install kernel-lqx
 
 ### podman setup
 if [ ! -e /etc/subgid ]; then
-    sudo sh -c 'echo $(whoami):100000:65536 > /etc/subgid'
+    sudo sh -c "echo $(whoami):100000:65536 > /etc/subgid"
     sudo cp /etc/sub{g,u}id
 fi
 ### END podman setup
