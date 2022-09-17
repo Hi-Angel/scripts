@@ -37,7 +37,9 @@ sudo dracut --regenerate-all --force
 sudo sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& zswap.enabled=1 zswap.max_pool_percent=25 zswap.compressor=lz4hc/' /etc/default/grub
 sudo sh -c 'echo GRUB_SAVEDEFAULT=true >> /etc/default/grub' # load last chosen kernel
 sudo grub2-mkconfig -o /etc/grub2.cfg
-sudo cp /etc/grub2{,-efi}.cfg
+# on current Fedora releases the two files are the same one, so copying fails. But we
+# can't rely on that, so attempt to copy anyway and just ignore the error.
+sudo cp /etc/grub2{,-efi}.cfg || false
 #### END of ZSWAP setup
 
 ### installation
