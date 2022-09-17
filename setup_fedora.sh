@@ -91,7 +91,7 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.Settings last-panel power
 gsettings set org.gnome.desktop.input-sources xkb-options "['compose:menu']"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.desktop.session idle-delay uint32 600
+gsettings set org.gnome.desktop.session idle-delay 600
 ### END Gnome setup
 
 ### install liquorix-kernel
