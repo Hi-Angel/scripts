@@ -92,6 +92,9 @@ gsettings set org.gnome.Settings last-panel power
 gsettings set org.gnome.desktop.input-sources xkb-options "['compose:menu']"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.session idle-delay 600
+# default to keyboard layout switching Alt+Shift shortcut
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
 ### END Gnome setup
 
 ### install liquorix-kernel
