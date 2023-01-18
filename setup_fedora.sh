@@ -50,7 +50,7 @@ sudo cp /etc/grub2{,-efi}.cfg || false
 # moreutils provides ifne
 # aspell-{ru,en} hunspell-{ru,en}: for good measure both lang-checking packages
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreutils libva-utils libva-intel-driver aspell-{ru,en} hunspell-{ru,en} lshw ack vlc
+sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreutils libva-utils intel-media-driver aspell-{ru,en} hunspell-{ru,en} lshw ack vlc
 ### END installation
 
 # # default to ondemand
