@@ -97,12 +97,6 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
 ### END Gnome setup
 
-### install liquorix-kernel
-# it has MLRU patchset included, which is a must have till it landed upstream
-sudo dnf copr enable rmnscnce/kernel-lqx -y
-sudo dnf install kernel-lqx
-### END install liquorix-kernel
-
 ### podman setup
 if [ ! -e /etc/subgid ]; then
     sudo sh -c "echo $(whoami):100000:65536 > /etc/subgid"
