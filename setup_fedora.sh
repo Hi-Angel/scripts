@@ -61,6 +61,7 @@ sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreut
 ### zsh section
 wget https://raw.githubusercontent.com/Hi-Angel/dotfiles/master/.zshrc
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
 chsh -s $(which zsh)
 ### END zsh section
