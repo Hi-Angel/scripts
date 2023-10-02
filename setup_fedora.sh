@@ -58,19 +58,19 @@ sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreut
 # sudo sed -i 's/performance/ondemand/' /etc/sysconfig/cpupower
 # sudo systemctl enable --now cpupower
 
+### konsole setup
+mkdir ~/Projects
+git clone https://github.com/Hi-Angel/dotfiles/ ~/Projects/dotfiles
+cp ~/Projects/dotfiles/.local ~/
+### END konsole setup
+
 ### zsh section
-wget https://raw.githubusercontent.com/Hi-Angel/dotfiles/master/.zshrc
+cp ~/Projects/dotfiles/.zshrc ~/
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
 chsh -s $(which zsh)
 ### END zsh section
-
-### konsole setup
-mkdir ~/Projects
-git clone https://github.com/Hi-Angel/dotfiles/ ~/Projects/dotfiles
-cp -rv ~/Projects/dotfiles/.local ~/
-### END konsole setup
 
 ### vim setup
 wget https://raw.githubusercontent.com/Hi-Angel/dotfiles/master/.vimrc
