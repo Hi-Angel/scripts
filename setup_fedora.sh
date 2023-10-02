@@ -97,7 +97,7 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
 
 # light scroll-lock when keyboard layout gets toggled between primary/non-primary
-dconf write /org/gnome/desktop/input-sources/xkb-options "['grp_led:scroll']"
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp_led:scroll']"
 ### END Gnome setup
 
 ### podman setup
