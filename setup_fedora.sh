@@ -58,9 +58,12 @@ sudo dnf install vim git zsh google-chrome-stable util-linux-user konsole moreut
 # sudo sed -i 's/performance/ondemand/' /etc/sysconfig/cpupower
 # sudo systemctl enable --now cpupower
 
-### konsole setup
-mkdir ~/Projects
+### get configuration files to make use of
+mkdir -p ~/Projects
 git clone https://github.com/Hi-Angel/dotfiles/ ~/Projects/dotfiles
+### END get configuration files to make use of
+
+### konsole setup
 cp ~/Projects/dotfiles/.local ~/
 ### END konsole setup
 
@@ -73,7 +76,7 @@ chsh -s $(which zsh)
 ### END zsh section
 
 ### vim setup
-wget https://raw.githubusercontent.com/Hi-Angel/dotfiles/master/.vimrc
+cp ~/Projects/dotfiles/.vimrc ~/
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 mkdir -p ~/.vim/autoload
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
