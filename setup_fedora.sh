@@ -64,7 +64,7 @@ git clone https://github.com/Hi-Angel/dotfiles/ ~/Projects/dotfiles
 ### END get configuration files to make use of
 
 ### konsole setup
-cp ~/Projects/dotfiles/.local ~/
+cp -rv ~/Projects/dotfiles/.local ~/
 ### END konsole setup
 
 ### zsh section
