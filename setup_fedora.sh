@@ -134,9 +134,8 @@ cp -rv ~/Projects/dotfiles/.emacs* ~/
 sudo dnf install -y qutebrowser
 # for some reason hunspell dicts are not detected by Qutebrowser, so we have to use
 # the script to install langs somewhere
-wget https://raw.githubusercontent.com/qutebrowser/qutebrowser/master/scripts/dictcli.py
-chmod +x dictcli.py
-./dictcli.py install en-US ru-RU
+wget https://raw.githubusercontent.com/qutebrowser/qutebrowser/master/scripts/dictcli.py -O /tmp/dictcli.py
+python3 /tmp/dictcli.py install en-US ru-RU
 ### END Qutebrowser
 
 # some stuff is hard to install from cmd line or doesn't make much sense in general configuration
