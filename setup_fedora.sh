@@ -79,7 +79,7 @@ mkdir -p ~/.vim/autoload
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 ### END vim setup
 
-cp -r ~/Projects/dotfiles/.config ~/
+cp -rv ~/Projects/dotfiles/.config ~/
 cp ~/Projects/dotfiles/.XCompose ~/
 sudo cp ~/Projects/dotfiles/etc/sysctl.d/99-sysctl.conf /etc/sysctl.d/
 sudo sh -c "echo LC_TIME=ru_RU.UTF-8 >> /etc/environment"
@@ -108,7 +108,7 @@ fi
 
 ### sway
 sudo dnf install sway python-i3ipc rofi i3blocks network-manager-applet
-cp -r ~/Projects/dotfiles/.config/sway ~/.config
+cp -rv ~/Projects/dotfiles/.config/sway ~/.config
 curl -LSso ~/.config/sway/inactive-windows-transparency.py https://raw.githubusercontent.com/swaywm/sway/master/contrib/inactive-windows-transparency.py
 mkdir -p ~/Pictures
 curl -LSso ~/Pictures/ANIME-PICTURES.NET_-_130164-1600x989-original-sakimichan-long+hair-wide+image-grey+hair-horn+%28horns%29.jpg https://ip1.anime-pictures.net/direct-images/dae/dae6076faa97645534586ab1d22603c3.jpg?if=ANIME-PICTURES.NET_-_130164-1600x989-original-sakimichan-long+hair-light+erotic-wide+image-horn+%28horns%29.jpg
@@ -123,7 +123,7 @@ sudo dnf groupinstall -y "KDE Plasma Workspaces"
 
 ### Emacs
 sudo dnf install emacs
-cp -r ~/Projects/dotfiles/.emacs* ~/
+cp -rv ~/Projects/dotfiles/.emacs* ~/
 # didn't care to automate packages installation. See comment at the top of `.emacs`.
 ### END Emacs
 
