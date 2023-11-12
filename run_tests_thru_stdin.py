@@ -1,17 +1,32 @@
 #!/usr/bin/env python3
 
-# A helper script to run an executable and pass some lines via stdin in to it, then
-# get the stdout and compare to the expected output. A usecase: Yandex contest tests
-# require passing them via stdin, so this script solves the problem of easily running
-# many tests over a single executable.
-#
-# Runs as `run_tests_thru_stdin.py ./my_app`, and the input is expected to be inside
-# `input.txt` file as repeated forms of the following shape (without empty lines):
-#
-#     Test:
-#     <test lines>
-#     Expected:
-#     <expected lines>
+SCRIPT_DESCRIPTION = """
+A helper script to run an executable and pass some lines via stdin in to it, then
+get the stdout and compare to the expected output. A usecase: Yandex contest tests
+require passing them via stdin, so this script solves the problem of easily running
+many tests over a single executable.
+
+Runs as `run_tests_thru_stdin.py ./my_app ./input.txt`. Tests inside the mentioned
+`input.txt` file are repeated forms of the following shape (note: empty lines are
+cosidered to be part of the input/output):
+
+    Test:
+    <test lines>
+    Expected:
+    <expected lines>
+
+For example:
+
+    Test:
+    1 2 3
+    Expected:
+    6
+    Test:
+    1 3
+    5 5
+    Expected:
+    14
+"""
 
 import argparse
 import subprocess
@@ -76,11 +91,12 @@ def parse_tests(tests_file: str) -> List[OneTest]:
     return ret
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description = SCRIPT_DESCRIPTION,
+                                     formatter_class = argparse.RawTextHelpFormatter)
     parser.add_argument('executable', help = 'Path to the executable to run tests on')
-    parser.add_argument('tests', help = 'Path to the file with tests')
+    parser.add_argument('file_w_tests', help = 'Path to the file with tests')
     args = parser.parse_args()
-    tests: List[OneTest] = parse_tests(args.tests)
+    tests: List[OneTest] = parse_tests(args.file_w_tests)
     failed_tests: List[str] = []
     for i in range(len(tests)):
         ret = tests[i].run_test(args.executable)
