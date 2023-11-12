@@ -25,8 +25,8 @@ def run_cmd_no_fail(cmd: str, stdin: str) -> Tuple[List[str], int]:
     return (ret.stdout.rstrip() # remove last newline
             .split('\n'), ret.returncode)
 
-def read_tests() -> List[str]:
-    with open('input.txt', 'r') as f:
+def read_tests(tests_file: str) -> List[str]:
+    with open(tests_file, 'r') as f:
         return f.read().splitlines()
 
 class OneTest:
@@ -47,11 +47,11 @@ class ParseState(Enum):
     InTest     = 1
     InExpected = 2
 
-def parse_tests() -> List[OneTest]:
+def parse_tests(tests_file: str) -> List[OneTest]:
     ret                       = []
     test_lines: List[str]     = []
     expected_lines: List[str] = []
-    lines_list = read_tests()
+    lines_list = read_tests(tests_file)
     assert lines_list[0] == 'Test:'
     lines_list = lines_list[1:]
     state = ParseState.InTest
@@ -78,8 +78,9 @@ def parse_tests() -> List[OneTest]:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('executable', help = 'Path to the executable to run tests on')
+    parser.add_argument('tests', help = 'Path to the file with tests')
     args = parser.parse_args()
-    tests: List[OneTest] = parse_tests()
+    tests: List[OneTest] = parse_tests(args.tests)
     failed_tests: List[str] = []
     for i in range(len(tests)):
         ret = tests[i].run_test(args.executable)
