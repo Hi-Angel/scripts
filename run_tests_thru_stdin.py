@@ -95,10 +95,14 @@ if __name__ == '__main__':
                                      formatter_class = argparse.RawTextHelpFormatter)
     parser.add_argument('executable', help = 'Path to the executable to run tests on')
     parser.add_argument('file_w_tests', help = 'Path to the file with tests')
+    parser.add_argument('-t', '--tests', nargs='+', type=int, action="extend",
+                        help = 'Only run the test with this number (1-based)')
     args = parser.parse_args()
     tests: List[OneTest] = parse_tests(args.file_w_tests)
     failed_tests: List[str] = []
     for i in range(len(tests)):
+        if args.tests is not None and i + 1 not in args.tests:
+            continue
         ret = tests[i].run_test(args.executable)
         if ret is None:
             print('✓', end='')
